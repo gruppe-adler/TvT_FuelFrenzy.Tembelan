@@ -7537,7 +7537,7 @@ class Mission
 			{
 				position[]={5132.0322,-0.00012969971,4825.4419};
 			};
-			init="call{[this,""Tankstelle"",10,0,false,[WEST,EAST],independent, true, {}, """"] call grad_sectors_fnc_createSector;}";
+			init="call{[this,""Tankstelle"",10,0,true,[WEST,EAST],independent, true, {}, """", [1,1]] call grad_sectors_fnc_createSector;}";
 			id=430;
 			type="LocationArea_F";
 			atlOffset=15.7;

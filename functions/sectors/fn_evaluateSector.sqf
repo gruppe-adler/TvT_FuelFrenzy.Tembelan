@@ -6,7 +6,7 @@ private _currentOwner = _trigger getVariable QGVAR(currentOwner);
 
 private _list = list _trigger;
 
-(_trigger getVariable [QGVAR(captureMode),0]) params [["_captureMode",0],["_captureModeParams",0]];
+(_trigger getVariable [QGVAR(captureMode),0]) params [["_captureMode",0],["_captureModeParams",10]];
 
 private _captureSides = _trigger getVariable [QGVAR(captureSides),[]];
 private _sideStrengths = _trigger getVariable QGVAR(sideStrengths);
