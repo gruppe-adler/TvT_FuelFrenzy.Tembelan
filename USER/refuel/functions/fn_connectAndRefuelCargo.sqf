@@ -136,7 +136,7 @@ private _attachPosModel = _sink worldToModel (ASLtoAGL _bestPosASL);
 
         if ([_unit, _nozzle] call refuel_fnc_canTurnOn) then {
             diag_log "turning on :)";
-            _unit setVariable [QGVAR(tempFuel), nil];
+            _nozzle setVariable [QGVAR(tempFuel), nil];
             [_unit, _nozzle] call FUNC(turnOn);
         } else {
             diag_log "cannot turn on!!!";
