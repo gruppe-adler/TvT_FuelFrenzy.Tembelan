@@ -45,7 +45,7 @@ private _endPointAction = [
 
 // helper object
 [
-    "Land_CarBattery_02_F",
+    "Land_BoreSighter_01_F",
     0,
     ["ACE_MainActions"],
     _endPointAction,

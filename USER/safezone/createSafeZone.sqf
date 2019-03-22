@@ -12,7 +12,7 @@ private _eventhandlerIdentifier = format ["FF_safeZoneFiredEH_%1", _area];
 
     if (!alive player) exitWith {};
     private _isInZone = (count ([player] inAreaArray _area) > 0);
-    systemChat str _isInZone;
+    // systemChat str _isInZone;
     
     private _firedEHSet = player getVariable [_eventhandlerSet, false];
     
@@ -26,9 +26,9 @@ private _eventhandlerIdentifier = format ["FF_safeZoneFiredEH_%1", _area];
                 private _firedEH = player addEventHandler ["fired", {deleteVehicle (_this select 6);}];
                 player setVariable [_eventhandlerIdentifier, _firedEH];
                 if (_side == playerSide) then {
-                    hint parseText "<t color='#009999'><t size='2'><t align='center'>Willkommen<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst deine Base.";
+                    hintSilent parseText "<t color='#009999'><t size='2'><t align='center'>Willkommen<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst deine Base.";
                 } else {
-                    hint parseText "<t color='#ff0000'><t size='2'><t align='center'>Warnung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst die feindliche Base. Hau ab.";
+                    hintSilent parseText "<t color='#ff0000'><t size='2'><t align='center'>Warnung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst die feindliche Base. Hau ab.";
                 };
                 player allowDamage false;
             };
@@ -43,9 +43,9 @@ private _eventhandlerIdentifier = format ["FF_safeZoneFiredEH_%1", _area];
             private _firedEH = player getVariable [_eventhandlerIdentifier, -1];
             player removeEventHandler ["fired", _firedEH];
             if (_side == playerSide) then {
-                    hint parseText "<t color='#FF0000'><t size='2'><t align='center'>Achtung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du verlässt die Base.";
+                    hintSilent parseText "<t color='#FF0000'><t size='2'><t align='center'>Achtung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du verlässt die Base.";
                 } else {
-                    hint parseText "<t color='#FF0000'><t size='2'><t align='center'>Achtung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du verlässt die Base.";
+                    hintSilent parseText "<t color='#FF0000'><t size='2'><t align='center'>Achtung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du verlässt die Base.";
                 };
             
             player allowDamage true;

@@ -36,6 +36,7 @@ if (_rate == 0) then {
     _rate = _sink getVariable ["ace_refuel_cargoRate", 0];
 };
 private _maxFuel = _sink getVariable ["ace_refuel_fuelMaxCargo", 0]; // getNumber (_config >> "ace_refuel_fuelCargo")
+private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
 
 [{
     params ["_args", "_pfID"];
@@ -66,6 +67,9 @@ private _maxFuel = _sink getVariable ["ace_refuel_fuelMaxCargo", 0]; // getNumbe
     };
 
     private _finished = false;
+    private _rateTime = CBA_missionTime;
+    private _fuelInSink = 0;
+
     private _fueling = _nozzle getVariable ["ace_refuel_isRefueling", false];
     if (_fueling) then {
         private _fuelInSource = [_source] call ace_refuel_fnc_getFuel;
@@ -76,7 +80,7 @@ private _maxFuel = _sink getVariable ["ace_refuel_fuelMaxCargo", 0]; // getNumbe
         };
 
         // Calculate rate using mission time to take time acceleration and pause into account
-        private _rateTime = _rate * (CBA_missionTime - (_nozzle getVariable ["ace_refuel_lastTickMissionTime", CBA_missionTime]));
+        _rateTime = _rate * (CBA_missionTime - (_nozzle getVariable ["ace_refuel_lastTickMissionTime", CBA_missionTime]));
         _nozzle setVariable ["ace_refuel_lastTickMissionTime", CBA_missionTime];
 
         if !(_fuelInSource == REFUEL_INFINITE_FUEL) then {
@@ -89,29 +93,35 @@ private _maxFuel = _sink getVariable ["ace_refuel_fuelMaxCargo", 0]; // getNumbe
         } else {
             _source setVariable ["ace_refuel_fuelCounter", (_source getVariable ["ace_refuel_fuelCounter", 0]) + _rateTime, true];
         };
+
+        _fuelInSink = (_unit getVariable ["ace_refuel_tempFuel", _startFuel]) + _rateTime;
+
         if (_fuelInSource <= 0 && {_fuelInSource > REFUEL_INFINITE_FUEL}) then {
             _fuelInSource = 0;
             _finished = true;
             ["source tank is empty!", 2, _unit] call ace_common_fnc_displayTextStructured;
         };
-
-        private _fuelInSink = (_unit getVariable ["ace_refuel_tempFuel", _startFuel]) + _rateTime;
+  
         if (_fuelInSink > _maxFuel) then {
             _fuelInSink = _maxFuel;
             _finished = true;
             ["refueling completed", 2, _unit] call ace_common_fnc_displayTextStructured;
+            
         };
         _unit setVariable ["ace_refuel_tempFuel", _fuelInSink];
-        ["ace_common_addCargoFuel", [_sink, _rateTime], _sink] call CBA_fnc_targetEvent;
+        ["ace_common_addCargoFuel", [_sink, _rateTime], _unit] call CBA_fnc_targetEvent;
         [_source, _fuelInSource] call ace_refuel_fnc_setFuel;
-    } else {
+    } else {       
+        _finished = true; // right?
         diag_log "not fueling";
         _unit setVariable ["ace_refuel_tempFuel", [_sink] call ace_refuel_fnc_getFuel];
     };
-diag_log "refuelSource2";
+    diag_log "refuelSource2";
     if (_finished) exitWith {
+
         _nozzle setVariable ["ace_refuel_lastTickMissionTime", nil];
         _nozzle setVariable ["ace_refuel_isRefueling", false, true];
+        ["ace_common_addCargoFuelFinished", [_sink, _startFuel, _fuelInSink], _unit] call CBA_fnc_targetEvent;
     };
 }, 1, [
     _nozzle getVariable "ace_refuel_source",
@@ -119,7 +129,7 @@ diag_log "refuelSource2";
     _unit,
     _nozzle,
     _rate,
-    [_sink] call ace_refuel_fnc_getFuel,
+    _startFuel,
     _maxFuel,
     _nozzle getVariable ["ace_refuel_attachPos", [0,0,0]],
     _connectToPoint

@@ -3,6 +3,6 @@
 */
 
 author = "nomisum für Gruppe Adler";                                               //Missionsersteller (Du)
-onLoadName = "TVT Tembelan Trap";                                                    //Name der Mission
+onLoadName = "TVT Fuel Frenzy";                                                    //Name der Mission
 onLoadMission = "";                                                             //Beschreibung der Mission (wird im Ladebildschirm unterhalb des Ladebildes angezeigt)
-loadScreen = "data\loadpic.paa";                                                //Ladebild
+loadScreen = "USER\loading\loading.jpg";                                                //Ladebild
