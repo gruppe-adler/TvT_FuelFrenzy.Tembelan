@@ -135,11 +135,10 @@ private _attachPosModel = _sink worldToModel (ASLtoAGL _bestPosASL);
         [_unit, _sink, _nozzle, _endPosTestOffset] call refuel_fnc_refuelCargo;
 
         if ([_unit, _nozzle] call refuel_fnc_canTurnOn) then {
-            diag_log "turning on :)";
-            _nozzle setVariable [QGVAR(tempFuel), nil];
+            _nozzle setVariable [QGVAR(sinkFuel), nil];
+            _nozzle setVariable [QGVAR(sourceFuel), nil];
             [_unit, _nozzle] call FUNC(turnOn);
         } else {
-            diag_log "cannot turn on!!!";
             ["could not turn on nozzle"] call EFUNC(common,displayText);
         };
     },

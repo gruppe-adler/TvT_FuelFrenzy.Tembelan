@@ -52,15 +52,11 @@ private _endPointAction = [
     true
 ] call ace_interact_menu_fnc_addActionToClass;
 
-
-
-
 [
     "ace_common_addCargoFuel",
     {
-        params ["_sink", "_amount"];
-        diag_log "yay fueling";
-         private _newValue = ([_sink] call ace_refuel_fnc_getFuel) + _amount;
-        [_sink, _newValue] call ace_refuel_fnc_setFuel;
+        params ["_tank", "_amount"];
+         private _newValue = ([_tank] call ace_refuel_fnc_getFuel) + _amount;
+        [_tank, _newValue] call ace_refuel_fnc_setFuel;
     }
 ] call CBA_fnc_addEventHandler;

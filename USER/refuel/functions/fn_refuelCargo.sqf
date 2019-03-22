@@ -36,11 +36,12 @@ if (_rate == 0) then {
     _rate = _sink getVariable ["ace_refuel_cargoRate", 0];
 };
 private _maxFuel = _sink getVariable ["ace_refuel_fuelMaxCargo", 0]; // getNumber (_config >> "ace_refuel_fuelCargo")
-private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
+private _sinkStartFuel = [_sink] call ace_refuel_fnc_getFuel;
+private _sourceStartFuel = [_source] call ace_refuel_fnc_getFuel;
 
 [{
     params ["_args", "_pfID"];
-    _args params [["_source", objNull, [objNull]], ["_sink", objNull, [objNull]], ["_unit", objNull, [objNull]], ["_nozzle", objNull, [objNull]], ["_rate", 1, [0]], ["_startFuel", 0, [0]], ["_maxFuel", 0, [0]], ["_connectFromPoint", [0,0,0], [[]], 3], ["_connectToPoint", [0,0,0], [[]], 3]];
+    _args params [["_source", objNull, [objNull]], ["_sink", objNull, [objNull]], ["_unit", objNull, [objNull]], ["_nozzle", objNull, [objNull]], ["_rate", 1, [0]], ["_sourceStartFuel", 0, [0]],  ["_sinkStartFuel", 0, [0]], ["_maxFuel", 0, [0]], ["_connectFromPoint", [0,0,0], [[]], 3], ["_connectToPoint", [0,0,0], [[]], 3]];
     if !(_nozzle getVariable ["ace_refuel_isConnected", false]) exitWith {
         [_pfID] call CBA_fnc_removePerFrameHandler;
     };
@@ -71,27 +72,34 @@ private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
 
     private _fueling = _nozzle getVariable ["ace_refuel_isRefueling", false];
     if (_fueling) then {
-        private _fuelInSource = [_source] call ace_refuel_fnc_getFuel;
+        private _fuelInSource = _nozzle getVariable ["ace_refuel_sourceFuel", _sourceStartFuel];
+        private _isInfiniteSource = (_fuelInSource == REFUEL_INFINITE_FUEL);
+        if (_isInfiniteSource) then {
+            _fuelInSource = 1e30; // just so we can normally calculate shit without constantly checking for the magic REFUEL_INFINITE_FUEL value
+        };
+
         if (_fuelInSource == 0) exitWith {
             ["source tank is empty!", 2, _unit] call ace_common_fnc_displayTextStructured;
             _nozzle setVariable ["ace_refuel_lastTickMissionTime", nil];
             _nozzle setVariable ["ace_refuel_isRefueling", false, true];
         };
 
-        // Calculate rate using mission time to take time acceleration and pause into account
+        // Calculate transferred volume using rate and mission time to take time acceleration and pause into account
         private _transferVolume = _rate * (CBA_missionTime - (_nozzle getVariable ["ace_refuel_lastTickMissionTime", CBA_missionTime]));
         _nozzle setVariable ["ace_refuel_lastTickMissionTime", CBA_missionTime];
 
-        if !(_fuelInSource == REFUEL_INFINITE_FUEL) then {
-            _transferVolume = _transferVolume min _fuelInSource;
-            _fuelInSource = _fuelInSource - _transferVolume;
-        } else {
+        if (_isInfiniteSource) then {
             _source setVariable ["ace_refuel_fuelCounter", (_source getVariable ["ace_refuel_fuelCounter", 0]) + _transferVolume, true];
         };
 
-        _fuelInSink = (_nozzle getVariable ["ace_refuel_tempFuel", _startFuel]) + _transferVolume;
+        _transferVolume = _transferVolume min _fuelInSource;
+        _prevFuelInSink = _nozzle getVariable ["ace_refuel_sinkFuel", _sinkStartFuel];
 
-        if (_fuelInSource <= 0 && {_fuelInSource > REFUEL_INFINITE_FUEL}) then {
+        _transferVolume = (_maxFuel - _prevFuelInSink) min _transferVolume;
+        _fuelInSink = _prevFuelInSink + _transferVolume;
+        _fuelInSource = _fuelInSource - _transferVolume;
+
+        if (_fuelInSource <= 0 && !_isInfiniteSource) then {
             _fuelInSource = 0;
             _finished = true;
             ["source tank is empty!", 2, _unit] call ace_common_fnc_displayTextStructured;
@@ -103,18 +111,22 @@ private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
             ["refueling completed", 2, _unit] call ace_common_fnc_displayTextStructured;
 
         };
-        _nozzle setVariable ["ace_refuel_tempFuel", _fuelInSink];
-        ["ace_common_addCargoFuel", [_sink, _transferVolume], _unit] call CBA_fnc_targetEvent;
-        [_source, _fuelInSource] call ace_refuel_fnc_setFuel;
+        _nozzle setVariable ["ace_refuel_sinkFuel", _fuelInSink];
+        _nozzle setVariable ["ace_refuel_sourceFuel", _fuelInSource];
+
+        ["ace_common_addCargoFuel", [_sink, _transferVolume], _sink] call CBA_fnc_targetEvent;
+        if !(_isInfiniteSource) then {
+            ["ace_common_addCargoFuel", [_source, - _transferVolume], _source] call CBA_fnc_targetEvent;
+        };
+        ["ace_common_fueling", [_source, _transferVolume, _sink], _unit] call CBA_fnc_targetEvent;
     } else {
-        diag_log "not fueling";
-        _nozzle setVariable ["ace_refuel_tempFuel", [_sink] call ace_refuel_fnc_getFuel];
+        _nozzle setVariable ["ace_refuel_sinkFuel", [_sink] call ace_refuel_fnc_getFuel];
+        _nozzle setVariable ["ace_refuel_sourceFuel", [_source] call ace_refuel_fnc_getFuel];
     };
-    diag_log "refuelSource2";
     if (_finished) exitWith {
         _nozzle setVariable ["ace_refuel_lastTickMissionTime", nil];
         _nozzle setVariable ["ace_refuel_isRefueling", false, true];
-        ["ace_common_addCargoFuelFinished", [_sink, _startFuel, _fuelInSink], _unit] call CBA_fnc_targetEvent;
+        ["ace_common_addCargoFuelFinished", [_sink, _sinkStartFuel, _fuelInSink], _unit] call CBA_fnc_targetEvent;
     };
 }, 1, [
     _nozzle getVariable "ace_refuel_source",
@@ -122,7 +134,8 @@ private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
     _unit,
     _nozzle,
     _rate,
-    _startFuel,
+    _sourceStartFuel,
+    _sinkStartFuel,
     _maxFuel,
     _nozzle getVariable ["ace_refuel_attachPos", [0,0,0]],
     _connectToPoint

@@ -12,12 +12,10 @@ private _refuelingSoundPathEnd = _soundPath + "USER\sounds\fueling_end.ogg";
 missionNamespace setVariable ["FF_fuelingSound", _refuelingSoundPath];
 missionNamespace setVariable ["FF_fuelingSoundEnd", _refuelingSoundPathEnd];
 
-["ace_common_addCargoFuel", {
-    // systemChat str _this;
-    // diag_log str _this;
+["ace_common_fueling", {
+    params ["_sourceObject", "_amount", "_sinkObject"];
 
-    private _sourceObject = _this select 0;
-    private _liters = [_sourceObject] call ace_refuel_fnc_getFuel;
+    private _liters = [_sinkObject] call ace_refuel_fnc_getFuel;
     hintSilent parseText ("<t color='#FF0000'><t size='2'><t align='center'>" + (str (floor _liters)) + "<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Liter");
 
     private _refuelingSoundPath = missionNamespace getVariable ["FF_fuelingSound", ""];
@@ -32,18 +30,14 @@ missionNamespace setVariable ["FF_fuelingSoundEnd", _refuelingSoundPathEnd];
     private _refuelingSoundPathEnd = missionNamespace getVariable ["FF_fuelingSoundEnd", ""];
     playSound3D [_refuelingSoundPathEnd, _sourceObject, false, getPos _sourceObject, 10, 1, 100];
 
-    // add points for selling
-    if (_sourceObject getVariable ["FF_sellingPoint", sideUnknown] == west) then {
-        private _points = missionNamespace getVariable ["FF_pointsForFuel_west", 0];
-        missionNamespace setVariable ["FF_pointsForFuel_west", _points + _newPoints];
-        systemChat ("made " + str (_points + _newPoints) + " points for west");
-    };
-    if (_sourceObject getVariable ["FF_sellingPoint", sideUnknown] == east) then {
-        private _points = missionNamespace getVariable ["FF_pointsForFuel_east", 0];
-        missionNamespace setVariable ["FF_pointsForFuel_east", _points + _newPoints];
-        systemChat ("made " + (str (_points + _newPoints)) + " points for east");
-    };
-
+    systemChat ("made " + (str (_points + _newPoints)) + " points");
+    [
+        {
+            systemChat format ["you've got now %1 fuel points and %2 points in total", [side player] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf"), [side player] call (compile preprocessFileLineNumbers "USER\getPoints.sqf")];
+        },
+        [],
+        1
+    ] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;
 
 
@@ -53,12 +47,12 @@ missionNamespace setVariable ["FF_fuelingSoundEnd", _refuelingSoundPathEnd];
 if (isServer) then {
 
         if (isServer) then {
-            [fuelSellPoint_east, 0] call ace_refuel_fnc_makeSource; 
+            [fuelSellPoint_east, 0] call ace_refuel_fnc_makeSource;
             fuelSellPoint_east setVariable ["ace_refuel_fuelMaxCargo", 1000000, true];
             fuelSellPoint_east setVariable ["ace_refuel_cargoRate", 200, true];
             fuelSellPoint_east setVariable ["FF_sellingPoint", east, true];
 
-            [fuelSellPoint_west, 0] call ace_refuel_fnc_makeSource; 
+            [fuelSellPoint_west, 0] call ace_refuel_fnc_makeSource;
             fuelSellPoint_west setVariable ["ace_refuel_fuelMaxCargo", 1000000, true];
             fuelSellPoint_west setVariable ["ace_refuel_cargoRate", 200, true];
             fuelSellPoint_west setVariable ["FF_sellingPoint", west, true];
@@ -78,7 +72,7 @@ if (isServer) then {
         private _fuelStations = nearestTerrainObjects [[worldSize/2, worldSize/2], ["Fuelstation"], worldSize/2] select { !isObjectHidden _x};
 
         // debug of detected stations
-        {   
+        {
             private _fuelStation = _x;
             private _fuelCargo = 3000;
             private _position = position _fuelStation;
