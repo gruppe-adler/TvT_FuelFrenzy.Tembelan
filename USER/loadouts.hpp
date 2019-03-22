@@ -15,9 +15,9 @@
 */
 
 
-loadoutFactionBlu = "special_forces_w";
-loadoutFactionOpf = "mafia";
-loadoutFactionInd = "";
+loadoutFactionBlu = "mafia_rus";
+loadoutFactionOpf = "mafia_it";
+loadoutFactionInd = "special_forces_w";
 
 
 //#define NIGHTVISION

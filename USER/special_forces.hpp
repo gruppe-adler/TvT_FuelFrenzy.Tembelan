@@ -1,6 +1,9 @@
 class special_forces_w {
     class AllUnits {
-        uniform = "rhs_uniform_g3_blk";
+        uniform[] = {
+                "U_B_GEN_Commander_F",
+                "U_B_GEN_Soldier_F"
+            };
         vest = "V_Chestrig_blk";
         backpack = "";
         headgear = "rhsusf_opscore_bk_pelt";

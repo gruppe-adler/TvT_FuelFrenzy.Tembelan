@@ -1,9 +1,9 @@
-class mafia {
+class mafia_rus {
     class AllUnits {
-        uniform = "rds_uniform_Woodlander4";
-        vest = "";
-        backpack = "B_FieldPack_blk";
-        headgear = "H_Watchcap_blk";
+        uniform[] = {"rds_uniform_Woodlander1", "rds_uniform_Woodlander2", "rds_uniform_Woodlander3", "rds_uniform_Woodlander4", "rds_uniform_citizen1", "rds_uniform_citizen2", "rds_uniform_citizen3", "rds_uniform_citizen4"};
+        vest = "V_LegStrapBag_black_F";
+        backpack = "B_LegStrapBag_black_F";
+        headgear[] = {"rds_Woodlander_cap1", "rds_Woodlander_cap2", "rds_Woodlander_cap3", "rds_Woodlander_cap4", "rhs_beanie_green", "H_Booniehat_oli"};
         goggles = "";
 
         primaryWeapon = "rhs_weap_akm";
@@ -92,7 +92,6 @@ class mafia {
 
         //Squad Leader
         class Soldier_SL_F: Soldier_F {
-            uniform = "rds_uniform_Functionary2";
             primaryWeapon = "rhs_weap_akm_gp25";
             primaryWeaponUnderbarrelMagazine = "rhs_GRD40_White";
 
@@ -107,14 +106,11 @@ class mafia {
 
         //Team Leader
         class Soldier_TL_F: Soldier_SL_F {
-
-        };
+            };
     };
 
     class Rank {
         class LIEUTENANT {
-            uniform = "rds_uniform_Functionary1";
-            headgear = "";
         };
     };
 };
