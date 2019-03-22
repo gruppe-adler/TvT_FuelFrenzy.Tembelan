@@ -91,8 +91,7 @@ class mafia_it {
         };
 
         //Squad Leader
-        class Soldier_SL_F: Soldier_F {
-            uniform = "U_NikosAgedBody";
+        class Soldier_TL_F: Soldier_F {
             primaryWeapon = "rhs_weap_akm_gp25";
             primaryWeaponUnderbarrelMagazine = "rhs_GRD40_White";
 
@@ -106,8 +105,8 @@ class mafia_it {
         };
 
         //Team Leader
-        class Soldier_TL_F: Soldier_SL_F {
-
+        class Soldier_SL_F: Soldier_TL_F {
+            uniform = "U_NikosAgedBody";
         };
     };
 

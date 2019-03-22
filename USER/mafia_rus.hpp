@@ -90,8 +90,9 @@ class mafia_rus {
             secondaryWeapon = "rhs_weap_rpg26";
         };
 
-        //Squad Leader
-        class Soldier_SL_F: Soldier_F {
+        //Team Leader
+        class Soldier_TL_F: Soldier_F {
+            
             primaryWeapon = "rhs_weap_akm_gp25";
             primaryWeaponUnderbarrelMagazine = "rhs_GRD40_White";
 
@@ -104,9 +105,10 @@ class mafia_rus {
             };
         };
 
-        //Team Leader
-        class Soldier_TL_F: Soldier_SL_F {
-            };
+        //Squad Leader
+        class Soldier_SL_F: Soldier_TL_F {
+            uniform= "U_Marshal";
+        };
     };
 
     class Rank {
