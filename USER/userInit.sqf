@@ -31,13 +31,23 @@ missionNamespace setVariable ["FF_fuelingSoundEnd", _refuelingSoundPathEnd];
     playSound3D [_refuelingSoundPathEnd, _sourceObject, false, getPos _sourceObject, 10, 1, 100];
 
     systemChat ("made " + (str (_points + _newPoints)) + " points");
-    [
-        {
-            systemChat format ["you've got now %1 fuel points and %2 points in total", [side player] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf"), [side player] call (compile preprocessFileLineNumbers "USER\getPoints.sqf")];
-        },
-        [],
-        1
-    ] call CBA_fnc_waitAndExecute;
+
+    if (_sourceObject == fuelSellPoint_west || _sourceObject == fuelSellPoint_east) then {
+        [
+            {
+                private _fuelCount  = format ["%1", [side player] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
+                private _totalPoints = format ["%1", [side player] call (compile preprocessFileLineNumbers "USER\getPoints.sqf")];
+                hintSilent parseText ("
+                        <t color='#009999'><t size='2'><t align='center'>" + _fuelCount + "<br/>
+                        <t align='center'><t size='1'><t color='#ffffff'>L Treibstoff<br/><br/>
+                        <t color='#009999'><t size='2'><t align='center'>" + _totalPoints + "<br/>
+                        <t align='center'><t size='1'><t color='#ffffff'>Siegpunkte<br/><br/>");
+               
+            },
+            [],
+            1
+        ] call CBA_fnc_waitAndExecute;
+    };
 }] call CBA_fnc_addEventHandler;
 
 
