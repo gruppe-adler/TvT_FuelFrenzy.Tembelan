@@ -112,13 +112,11 @@ private _startFuel = [_sink] call ace_refuel_fnc_getFuel;
         ["ace_common_addCargoFuel", [_sink, _rateTime], _unit] call CBA_fnc_targetEvent;
         [_source, _fuelInSource] call ace_refuel_fnc_setFuel;
     } else {       
-        _finished = true; // right?
         diag_log "not fueling";
         _unit setVariable ["ace_refuel_tempFuel", [_sink] call ace_refuel_fnc_getFuel];
     };
     diag_log "refuelSource2";
     if (_finished) exitWith {
-
         _nozzle setVariable ["ace_refuel_lastTickMissionTime", nil];
         _nozzle setVariable ["ace_refuel_isRefueling", false, true];
         ["ace_common_addCargoFuelFinished", [_sink, _startFuel, _fuelInSink], _unit] call CBA_fnc_targetEvent;
