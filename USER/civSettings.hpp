@@ -2,24 +2,21 @@
 *   Legt Einstellungen für grad-civs Zivilisten fest.
 *   In der Klasse "userEquipment" können eigene Ausrüstungsgegenstände für die Zivilisten definiert werden.
 */
+enableCivs = 1;
 
+debugCivState = 1;
+backpackProbability = 0.15;
 
-enableOnFoot = 1;                                                               // Zivilisten, die durch die Gegend laufen, einschalten (0/1)
-enableInVehicles = 0;                                                           // Fahrzeugfahrende Zivilisten einschalten (0/1)
+maxCivsResidents = 20;
+spawnDistancesResidents[] = {750, 1500};
 
-maxCivs = 10;                                                                   // maximale Anzahl an Zivilisten
-spawnDistances[] = {1000,4500};                                                 // Mindest- und Maximalabstand zu allen Spielern, in denen Zivilisten spawnen
-backpackProbability = 0.15;                                                     // Wahrscheinlichkeit, dass Zivilisten mit Backpacks spawnen (0-1)
-exitOn = "";                                                                    // Skriptbedingung, ab der keine weiteren Zivilisten mehr spawnen
-onSpawn = "";                                                                   // Code, der ausgeführt wird, wenn ein Zivilist spawnt
-onHeldUp = "";                                                                  // Code, der ausgeführt wird, wenn ein Zivilist angehalten wird (Spieler zeigt mit Waffe auf Zivilist)
+maxCivsOnFoot = 10;
+spawnDistancesOnFoot[] = {1000,4500};
 
-
-maxCivsOnFoot = 10;                                                             // maximale Anzahl an Zivilisten zu Fuß
-maxCivsInVehicles = 3;                                                         // maximale Anzahl an Zivilisten in Fahrzeugen
-spawnDistancesOnFoot[] = {1000,4500};                                           // Mindest- und Maximalabstand zu allen Spielern, in denen Zivilisten zu Fuß spawnen
-spawnDistancesInVehicles[] = {1800,6000};                                       // Mindest- und Maximalabstand zu allen Spielern, in denen Zivilisten in Fahrzeugen spawnen
-
+enableInVehicles = 1;
+automaticVehicleGroupSize = 1;
+maxCivsInVehicles = 5;
+spawnDistancesInVehicles[] = {1800,5000};
 
 class userEquipment {
     // Soll die hier definierte Ausrüstung die vordefinierte, inselabhängige Ausrüstung ersetzen oder zu dieser hinzugefügt werden? (0: hinzufügen, 1: ersetzen)

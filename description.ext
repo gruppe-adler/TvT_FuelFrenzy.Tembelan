@@ -63,10 +63,8 @@ class CfgGradFortifications {
 };
 
 class CfgGradCivs {
+	autoInit = 0;
 	#include "USER\civSettings.hpp"
-
-	autoInit = 1;
-	debugMode = 0;
 };
 
 class GRAD_Replay {
