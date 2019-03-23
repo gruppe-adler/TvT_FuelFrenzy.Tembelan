@@ -1,6 +1,6 @@
 class mafia_it {
     class AllUnits {
-        uniform[] = {"rds_uniform_Functionary1", "rds_uniform_Functionary2", "rds_uniform_Functionary3", "rds_uniform_Functionary4"};     
+        uniform[] = {"rds_uniform_Functionary1"};
         vest = "V_LegStrapBag_black_F";
         backpack = "B_LegStrapBag_black_F";
         headgear[] = {"H_Hat_brown", "H_Hat_grey", "H_StrawHat_dark", "H_Hat_tan", "H_Hat_checker"};
