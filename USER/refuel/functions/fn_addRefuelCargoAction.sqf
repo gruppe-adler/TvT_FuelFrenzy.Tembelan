@@ -1,6 +1,6 @@
 #define REFUEL_NOZZLE_ACTION_DISTANCE 2
 
-private _action = [
+private _fillCargoTankAction = [
     "RefuelStorage",
     "Tankwagenkessel befüllen",
     "",
@@ -61,7 +61,7 @@ private _returnNozzleAction = [
     "Car",
     0,
     ["ACE_MainActions"],
-    _action,
+    _fillCargoTankAction,
     true
 ] call ace_interact_menu_fnc_addActionToClass;
 
