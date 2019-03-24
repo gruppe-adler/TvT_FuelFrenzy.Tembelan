@@ -10,7 +10,7 @@ private _softPoints = [_side, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar
 
 private _result = _fuelPoints + _infPoints + _softPoints;
 // systemChat str _pointsCategorized;
-systemChat str _result;
+// systemChat str _result;
 // ["Kills",19],["Vehicles destroyed",10],["Other",5]
 
 _result

@@ -8,7 +8,7 @@ class EditorData
 	toggles=33;
 	class ItemIDProvider
 	{
-		nextID=1287;
+		nextID=1291;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=127;
+		nextID=137;
 	};
 	class Camera
 	{
-		pos[]={1819.7622,37.41,4780.8423};
-		dir[]={0.29758224,-0.74154764,0.60129279};
-		up[]={0.3289184,0.67089933,0.66460991};
-		aside[]={0.89624739,6.2631443e-008,-0.44355652};
+		pos[]={1811.4233,21.780344,4812.749};
+		dir[]={0.74614352,-0.4867382,0.45430839};
+		up[]={0.41575509,0.87353808,0.25314385};
+		aside[]={0.52007025,3.4546247e-007,-0.85414505};
 	};
 };
 binarizationWanted=0;
@@ -3376,7 +3376,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=297;
+		items=301;
 		class Item0
 		{
 			dataType="Layer";
@@ -8550,8 +8550,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3803.6399,5.8300772,836.77899};
-				angles[]={0,3.4033921,0};
+				position[]={3809.896,5.8300772,833.39978};
+				angles[]={0,3.490659,0};
 			};
 			side="Empty";
 			flags=4;
@@ -8939,7 +8939,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1781.6926,14.267777,4825.4873};
+				position[]={1781.5804,14.267777,4825.3467};
 				angles[]={0,1.5707965,0};
 			};
 			side="Empty";
@@ -8957,7 +8957,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1781.5266,14.267777,4829.8135};
+				position[]={1781.368,14.267777,4829.1631};
 				angles[]={0,1.5707965,0};
 			};
 			side="Empty";
@@ -8975,7 +8975,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1781.4237,14.267777,4834.5928};
+				position[]={1781.5042,14.267777,4833.1553};
 				angles[]={0,1.5707965,0};
 			};
 			side="Empty";
@@ -8993,8 +8993,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3808.0051,5.8300772,834.97394};
-				angles[]={0,3.4033921,0};
+				position[]={3813.834,5.8300772,831.89203};
+				angles[]={0,3.5081117,0};
 			};
 			side="Empty";
 			flags=4;
@@ -9341,8 +9341,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3811.9922,5.8300772,833.54083};
-				angles[]={0,3.4033921,0};
+				position[]={3817.4038,5.8300772,843.26892};
+				angles[]={0,3.5255654,0};
 			};
 			side="Empty";
 			flags=4;
@@ -9689,8 +9689,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3816.0647,5.8300772,832.09021};
-				angles[]={0,3.4033921,0};
+				position[]={3813.5535,5.8300772,845.05096};
+				angles[]={0,3.4557521,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30721,7 +30721,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={1780.6775,14.574408,4815.6841};
-				angles[]={-0,1.6406095,0};
+				angles[]={0,1.6406095,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30991,7 +30991,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3778.2612,5.0991759,821.41211};
-				angles[]={-0,0.30661947,0};
+				angles[]={0,0.30661947,0};
 			};
 			side="Empty";
 			flags=4;
@@ -31155,6 +31155,738 @@ class Mission
 			id=1232;
 			type="C_Boat_Transport_02_F";
 			atlOffset=1.2006104;
+		};
+		class Item297
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3805.6672,5.8300772,835.11517};
+				angles[]={0,3.490659,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
+				textures="standard";
+			};
+			id=1287;
+			type="RHS_Ural_Fuel_VDV_01";
+			atlOffset=2.3841858e-007;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="rhs_hideLightCover";
+					expression="_this animate ['light_hide',_value,true]";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="rhs_decalNumber_type";
+					expression="_this setVariable ['rhs_decalNumber_type', _value];[_this,[['Number', cDecals4CarsNumberPlaces, _value]]] call rhs_fnc_decalsInit";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Default";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="VehicleCustomization";
+					expression="if (local _this) then {if (isSimpleObject _this) then {_this setVariable ['bis_fnc_initVehicle_customization',_value]} else {([_this] + _value + [true]) call (uinamespace getvariable 'bis_fnc_initVehicle');};};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"ARRAY"
+								};
+							};
+							class value
+							{
+								items=2;
+								class Item0
+								{
+									class data
+									{
+										class type
+										{
+											type[]=
+											{
+												"ARRAY"
+											};
+										};
+									};
+								};
+								class Item1
+								{
+									class data
+									{
+										class type
+										{
+											type[]=
+											{
+												"ARRAY"
+											};
+										};
+										class value
+										{
+											items=10;
+											class Item0
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="spare_hide";
+												};
+											};
+											class Item1
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+											class Item2
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="bench_hide";
+												};
+											};
+											class Item3
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=1;
+												};
+											};
+											class Item4
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="people_tag_hide";
+												};
+											};
+											class Item5
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+											class Item6
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="rear_numplate_hide";
+												};
+											};
+											class Item7
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=1;
+												};
+											};
+											class Item8
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="light_hide";
+												};
+											};
+											class Item9
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="rhs_decalPlatoon_type";
+					expression="_this setVariable ['rhs_decalPlatoon_type', _value];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Army";
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="rhs_decalArmy_type";
+					expression="_this setVariable ['rhs_decalArmy_type', _value];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Army";
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="rhs_decalArmy";
+					expression="if(parseNumber _value >= 0)then{ [_this, [ [ 'Label', cDecalsCarsRightArmyPlaces,  _this getVariable ['rhs_decalArmy_type','Army'],call compile _value] ] ] call rhs_fnc_decalsInit};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="-1";
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="rhs_decalPlatoon";
+					expression="if(parseNumber _value >= 0)then{ [_this, [ [ 'Label', cDecalsCarsRightPlatoonPlaces,  _this getVariable ['rhs_decalPlatoon_type','Army'],call compile _value] ] ] call rhs_fnc_decalsInit};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="-1";
+						};
+					};
+				};
+				nAttributes=8;
+			};
+		};
+		class Item298
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={3801.3877,5.8300772,836.99255};
+				angles[]={0,3.490659,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
+				textures="standard";
+			};
+			id=1288;
+			type="RHS_Ural_Fuel_VDV_01";
+			atlOffset=2.3841858e-007;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="rhs_hideLightCover";
+					expression="_this animate ['light_hide',_value,true]";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="rhs_decalNumber_type";
+					expression="_this setVariable ['rhs_decalNumber_type', _value];[_this,[['Number', cDecals4CarsNumberPlaces, _value]]] call rhs_fnc_decalsInit";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Default";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="VehicleCustomization";
+					expression="if (local _this) then {if (isSimpleObject _this) then {_this setVariable ['bis_fnc_initVehicle_customization',_value]} else {([_this] + _value + [true]) call (uinamespace getvariable 'bis_fnc_initVehicle');};};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"ARRAY"
+								};
+							};
+							class value
+							{
+								items=2;
+								class Item0
+								{
+									class data
+									{
+										class type
+										{
+											type[]=
+											{
+												"ARRAY"
+											};
+										};
+									};
+								};
+								class Item1
+								{
+									class data
+									{
+										class type
+										{
+											type[]=
+											{
+												"ARRAY"
+											};
+										};
+										class value
+										{
+											items=10;
+											class Item0
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="spare_hide";
+												};
+											};
+											class Item1
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+											class Item2
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="bench_hide";
+												};
+											};
+											class Item3
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=1;
+												};
+											};
+											class Item4
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="people_tag_hide";
+												};
+											};
+											class Item5
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+											class Item6
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="rear_numplate_hide";
+												};
+											};
+											class Item7
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=1;
+												};
+											};
+											class Item8
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="light_hide";
+												};
+											};
+											class Item9
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"SCALAR"
+														};
+													};
+													value=0;
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="rhs_decalPlatoon_type";
+					expression="_this setVariable ['rhs_decalPlatoon_type', _value];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Army";
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="rhs_decalArmy_type";
+					expression="_this setVariable ['rhs_decalArmy_type', _value];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Army";
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="rhs_decalArmy";
+					expression="if(parseNumber _value >= 0)then{ [_this, [ [ 'Label', cDecalsCarsRightArmyPlaces,  _this getVariable ['rhs_decalArmy_type','Army'],call compile _value] ] ] call rhs_fnc_decalsInit};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="-1";
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="rhs_decalPlatoon";
+					expression="if(parseNumber _value >= 0)then{ [_this, [ [ 'Label', cDecalsCarsRightPlatoonPlaces,  _this getVariable ['rhs_decalPlatoon_type','Army'],call compile _value] ] ] call rhs_fnc_decalsInit};";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="-1";
+						};
+					};
+				};
+				nAttributes=8;
+			};
+		};
+		class Item299
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={1781.5055,14.267777,4837.1782};
+				angles[]={0,1.5707965,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="call{[this, east] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				textures="Black";
+			};
+			id=1289;
+			type="O_G_Van_01_fuel_F";
+		};
+		class Item300
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={1781.6793,14.267777,4841.3613};
+				angles[]={0,1.5707965,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="call{[this, east] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				textures="Black";
+			};
+			id=1290;
+			type="O_G_Van_01_fuel_F";
 		};
 	};
 	class Connections

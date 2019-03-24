@@ -93,5 +93,7 @@ if (isServer) then {
 
         missionNamespace setVariable ["FF_allFuelStations", _fuelStations, true];
 
+        
+
         [] execVM "USER\winstats\checkWinConditions.sqf";
 };
