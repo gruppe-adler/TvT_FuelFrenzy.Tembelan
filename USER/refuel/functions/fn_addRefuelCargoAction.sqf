@@ -3,7 +3,6 @@
 private _cacheRefuelClasses = call (uiNamespace getVariable ["ace_refuel_cacheRefuelClasses", {[[],[]]}]);
 _cacheRefuelClasses params [["_staticClasses", [], [[]]], ["_dynamicClasses", [], [[]]]];
 
-
 private _fillCargoTankAction = [
     "RefuelStorage",
     "Tankwagenkessel befüllen",
@@ -40,6 +39,7 @@ private _endPointAction = [
     },{},nil,"",3,[false,false,false,false,false]
 ] call ace_interact_menu_fnc_createAction;
 
+
 private _returnNozzleAction = [
     "ReturnNozzle",
     "Zapfpistole zurückstecken",
@@ -51,19 +51,8 @@ private _returnNozzleAction = [
 }] call ace_interact_menu_fnc_createAction;
 
 
-/*
-{
-    [
-        _x,
-        0,
-        ["ACE_MainActions", "ace_refuel_Refuel"],
-        _returnNozzleAction,
-        true
-    ] call ace_interact_menu_fnc_addActionToClass;
-} forEach ["Car", "Land_BoreSighter_01_F"];
-*/
-// helper object
 ["Land_BoreSighter_01_F", 0, ["ACE_MainActions"], _endPointAction, true] call ace_interact_menu_fnc_addActionToClass;
+["Land_BoreSighter_01_F", 0, ["ACE_MainActions", "ace_refuel_Refuel"], _returnNozzleAction] call ace_interact_menu_fnc_addActionToClass;
 
 {
     private _className = _x;
@@ -77,7 +66,7 @@ private _returnNozzleAction = [
     {
         [_className, 0, ["ACE_MainActions", "ace_refuel_Refuel"], _x, true] call ace_interact_menu_fnc_addActionToClass;
     } forEach [_fillCargoTankAction, _returnNozzleAction];
-} forEach (_dynamicClasses + ["Land_BoreSighter_01_F"]);
+} forEach _dynamicClasses;
 
 [
     "ace_common_addCargoFuel",
