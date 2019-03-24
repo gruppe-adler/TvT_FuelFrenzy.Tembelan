@@ -71,12 +71,12 @@ if (hasInterface) then {
     private _picturePath = ["", _iconInf, _iconSoft, _iconFuel, _iconTotal];
     private _picturePathDescription = ["", "Infanterie", "Autos", "Treibstoff", "Insgesamt"];
 
-    private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsCategory) + ([west, "AIKILLED"] call grad_points_fnc_getPointsCategory));
-    private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsCategory) + ([east, "AIKILLED"] call grad_points_fnc_getPointsCategory));
+    private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([west, "AIKILLED"] call grad_points_fnc_getPointsVar));
+    private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([east, "AIKILLED"] call grad_points_fnc_getPointsVar));
     // private _resultArmored = ["", "1", "2", "3", "4"];
 
-    private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
-    private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
+    private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+    private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
     // private _resultArmored = ["", "1", "2", "3", "4"];
     private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
     private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
