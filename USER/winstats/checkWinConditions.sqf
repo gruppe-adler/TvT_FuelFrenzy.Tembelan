@@ -30,11 +30,12 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
                 _allFuelTrucksDestroyedOrEmpty = false;
             };
 
-             ["USER\winstats\showStats.sqf"] remoteExec ["execVM", 0, true];
-
-            systemChat "all trucks destroyed or empty";
-            diag_log "all trucks destroyed or empty";
-            [_handle] call CBA_fnc_removePerFrameHandler;
+            if (_allFuelTrucksDestroyedOrEmpty) then {
+                ["USER\winstats\showStats.sqf"] remoteExec ["execVM", 0, true];
+                systemChat "all trucks destroyed or empty";
+                diag_log "all trucks destroyed or empty";
+                [_handle] call CBA_fnc_removePerFrameHandler;
+            };
         } forEach _allFuelTrucks;
     };
     
