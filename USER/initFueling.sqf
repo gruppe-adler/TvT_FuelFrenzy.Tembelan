@@ -71,7 +71,7 @@ if (isServer) then {
 
         {
           [_x, 0] call ace_refuel_fnc_setfuel;
-          _x setVariable ["ace_refuel_fuelMaxCargo", 3000];
+          _x setVariable ["ace_refuel_fuelMaxCargo", 3000, true];
         } forEach _fuelTrucks;
 
 
@@ -81,8 +81,8 @@ if (isServer) then {
             private _fuelStation = _x;
             private _fuelCargo = 3000;
             private _position = position _fuelStation;
-            _fuelStation setVariable ["ace_refuel_fuelMaxCargo", 3000];
-            _fuelStation setVariable ["ace_refuel_currentFuelCargo", 3000];
+            _fuelStation setVariable ["ace_refuel_fuelMaxCargo", 3000, true];
+            _fuelStation setVariable ["ace_refuel_currentFuelCargo", 3000, true];
 
             /*
             private _marker = createMarker [format ["fuelstation_%1", _position], _position];
