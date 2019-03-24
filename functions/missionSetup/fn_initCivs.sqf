@@ -1,6 +1,6 @@
 #include "component.hpp"
 
-private _enable = ["ENABLE_CIVS", 1] call BIS_fnc_getParamValue;
+private _enable = ["ENABLE_CIVS", 1] call BIS_fnc_getParamValue == 1;
 // ([missionConfigFile >> "CfgGradCivs","enableCivs",0] call BIS_fnc_returnConfigEntry) == 1;
 if !(_enable) exitWith {};
 
