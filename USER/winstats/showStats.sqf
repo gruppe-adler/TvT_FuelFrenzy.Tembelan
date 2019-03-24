@@ -164,8 +164,7 @@ for "_i" from 1 to 3 do {
 };
 
 sleep 20;
-
-closeDisplay _display;
+_display closeDisplay 1;
 
 private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
 private _draw = _resultTotalNumber_west == _resultTotalNumber_east;

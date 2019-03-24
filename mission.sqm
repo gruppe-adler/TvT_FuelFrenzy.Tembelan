@@ -6959,7 +6959,7 @@ class Mission
 				};
 			};
 			id=205;
-			atlOffset=3.647037;
+			atlOffset=15.078125;
 		};
 		class Item3
 		{
@@ -29032,6 +29032,7 @@ class Mission
 			};
 			id=1211;
 			type="rhs_zil131_open_msv";
+			atlOffset=-2.3841858e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -29167,6 +29168,7 @@ class Mission
 			};
 			id=1212;
 			type="rhs_zil131_open_msv";
+			atlOffset=-2.3841858e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -29302,6 +29304,7 @@ class Mission
 			};
 			id=1215;
 			type="rhs_zil131_msv";
+			atlOffset=-2.3841858e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -29437,6 +29440,7 @@ class Mission
 			};
 			id=1216;
 			type="rhs_zil131_msv";
+			atlOffset=-2.3841858e-007;
 			class CustomAttributes
 			{
 				class Attribute0
