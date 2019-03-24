@@ -11,16 +11,18 @@
 *
 */
 
-playerKilled = 200;
-aiKilled = 100;
+playerKilled = 0;
+aiKilled = 0;
 civKilled = 0;
 
 class BLUFOR {
-    
+    playerKilled = 200;
+    aiKilled = 100;
 };
 
 class OPFOR {
-    
+    playerKilled = 200;
+    aiKilled = 100;
 };
 
 class INDEPENDENT {
