@@ -4,7 +4,7 @@
 */
 enableCivs = 1;
 
-debugCivState = 1;
+debugCivState = 0;
 backpackProbability = 0.15;
 
 maxCivsResidents = 20;

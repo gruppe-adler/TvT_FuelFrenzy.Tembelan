@@ -34,22 +34,28 @@ private _iconFuel = "USER\winstats\drop2.paa";
 private _iconTotal = "\A3\ui_f\data\igui\cfg\mptable\total_ca.paa";
 // text = "\A3\ui_f\data\igui\cfg\mptable\air_ca.paa";
 
-private _columns = ["", "Italiener", "Russen"];
+private _columns = ["", "Russen", "Italiener"];
 private _picturePath = ["", _iconInf, _iconSoft, _iconFuel, _iconTotal];
 private _picturePathDescription = ["", "Infanterie", "Autos", "Treibstoff", "Insgesamt"];
 
-private _resultInf_west = "5000";
-private _resultSoft_west = "1000";
+private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([west, "AIKILLED"] call grad_points_fnc_getPointsVar));
+private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([east, "AIKILLED"] call grad_points_fnc_getPointsVar));
 // private _resultArmored = ["", "1", "2", "3", "4"];
-private _resultFuel_west = "2000";
-private _resultTotal_west = "25000";
 
-private _resultInf_east = "4000";
-private _resultSoft_east = "4000";
+private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
 // private _resultArmored = ["", "1", "2", "3", "4"];
-private _resultFuel_east = "4000";
-private _resultTotal_east = "30000";
+private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
+private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
 
+/*
+systemChat _resultInf_west;
+systemChat _resultSoft_west;
+systemChat _resultFuel_west;
+*/
+
+private _resultTotal_west = str ((parseNumber _resultInf_west) + (parseNumber _resultSoft_west) + (parseNumber _resultFuel_west));
+private _resultTotal_east= str ((parseNumber _resultInf_east) + (parseNumber _resultSoft_east) + (parseNumber _resultFuel_east));
 
 private _results_west = ["", _resultInf_west, _resultSoft_west, _resultFuel_west, _resultTotal_west];
 private _results_east = ["", _resultInf_east, _resultSoft_east, _resultFuel_east, _resultTotal_east];
@@ -72,7 +78,7 @@ for "_i" from 1 to 3 do {
     _headline ctrlsetFont "RobotoCondensedBold";
     _headline ctrlSetBackgroundColor [0,0,0,0];
     _headline ctrlSetTextColor [1,1,1,1];
-    _headline ctrlSetStructuredText parseText ("<t size='2' align='center' color='#333333'>" + (_columns select (_i-1)) + "</t>");
+    _headline ctrlSetStructuredText parseText ("<t size='2' align='center' color='#666666'>" + (_columns select (_i-1)) + "</t>");
     _headline ctrlSetPosition [
         _columnWidth * _multiplicator + safezoneX + _columnWidth, 
         _rowHeight * 4 + safezoneY + _rowHeight * 2, 
@@ -83,6 +89,8 @@ for "_i" from 1 to 3 do {
 
 
     for "_j" from 1 to 4 do {   
+
+            private _textFadeResult = if (_j == 4) then { 0 } else { 0.5 };
 
             if (_i == 1) then {
                 private _picture = _display ctrlCreate ["RscPictureKeepAspect", -1];
@@ -95,6 +103,7 @@ for "_i" from 1 to 3 do {
                 _picture ctrlSetBackgroundColor [0,0,0,0];
                 _picture ctrlSetText (_picturePath select _j);
                 _picture ctrlSetTooltip (_picturePathDescription select _j);
+                _picture ctrlSetFade 0.5;
                 _picture ctrlCommit 0;
             };
 
@@ -102,13 +111,14 @@ for "_i" from 1 to 3 do {
                 private _subline = _display ctrlCreate ["RscStructuredText", -1];
                 _subline ctrlsetFont "RobotoCondensedBold";
                 _subline ctrlSetBackgroundColor [0,0,0,0];
-                _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#999999'>" + (_results_east select _j) + "</t>");
+                _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_east select _j) + "</t>");
                 _subline ctrlSetPosition [
                     _columnWidth * _multiplicator + safezoneX  + _columnWidth, 
                     (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
                     _columnWidth * 4,
                     _rowHeight * 2
                 ];
+                _subline ctrlSetFade _textFadeResult;
                 _subline ctrlCommit 0;
             };
 
@@ -116,24 +126,25 @@ for "_i" from 1 to 3 do {
                 private _subline = _display ctrlCreate ["RscStructuredText", -1];
                 _subline ctrlsetFont "RobotoCondensedBold";
                 _subline ctrlSetBackgroundColor [0,0,0,0];
-                _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#999999'>" + (_results_west select _j) + "</t>");
+                _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_west select _j) + "</t>");
                 _subline ctrlSetPosition [
                     _columnWidth * _multiplicator + safezoneX  + _columnWidth, 
                     (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
                     _columnWidth * 4,
                     _rowHeight * 2
                 ];
+                _subline ctrlSetFade _textFadeResult;
                 _subline ctrlCommit 0;
             };
 
 
-
+            private _dividerHeight = if (_j == 4) then { _rowHeight/10 } else { _rowHeight/20 };
             private _divider = _display ctrlCreate ["RscStructuredText", -1];
             _divider ctrlSetPosition [
                 safezoneX,
                 (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 4,
                 _screenWidth,
-                _rowHeight / 20
+                _dividerHeight
             ];
             _divider ctrlSetBackgroundColor [1,1,1,0.03];
             _divider ctrlCommit 0;

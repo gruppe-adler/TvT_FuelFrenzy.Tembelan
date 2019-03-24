@@ -81,15 +81,21 @@ if (isServer) then {
 
         private _fuelStations = nearestTerrainObjects [[worldSize/2, worldSize/2], ["Fuelstation"], worldSize/2] select { !isObjectHidden _x};
 
-        // debug of detected stations
         {
             private _fuelStation = _x;
             private _fuelCargo = 3000;
             private _position = position _fuelStation;
             _fuelStation setVariable ["ace_refuel_fuelMaxCargo", 3000];
+            _fuelStation setVariable ["ace_refuel_currentFuelCargo", 3000];
+           
+            /*
             private _marker = createMarker [format ["fuelstation_%1", _position], _position];
             _marker setMarkerShape "ICON";
             _marker setMarkerType "hd_dot";
+            */
         } forEach _fuelStations;
 
+        missionNamespace setVariable ["FF_allFuelStations", _fuelStations, true];
+
+        [] execVM "USER\winstats\checkWinConditions.sqf";
 };
