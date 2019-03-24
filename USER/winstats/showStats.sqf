@@ -1,3 +1,41 @@
+
+if (!hasInterface) exitWith {
+    private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([west, "AIKILLED"] call grad_points_fnc_getPointsVar));
+    private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([east, "AIKILLED"] call grad_points_fnc_getPointsVar));
+    // private _resultArmored = ["", "1", "2", "3", "4"];
+
+    private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+    private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+    // private _resultArmored = ["", "1", "2", "3", "4"];
+    private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
+    private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
+
+    private _resultTotalNumber_west = ((parseNumber _resultInf_west) + (parseNumber _resultSoft_west) + (parseNumber _resultFuel_west));
+    private _resultTotalNumber_east = ((parseNumber _resultInf_east) + (parseNumber _resultSoft_east) + (parseNumber _resultFuel_east));
+
+    private _resultTotal_west = str _resultTotalNumber_west;
+    private _resultTotal_east= str _resultTotalNumber_east;
+
+    private _results_west = ["", _resultInf_west, _resultSoft_west, _resultFuel_west, _resultTotal_west];
+    private _results_east = ["", _resultInf_east, _resultSoft_east, _resultFuel_east, _resultTotal_east];
+
+    private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
+    private _draw = _resultTotalNumber_west == _resultTotalNumber_east;
+
+    sleep 16;
+    [] call GRAD_replay_fnc_stopRecord;
+
+    if (_eastWins) then {
+        [[east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];    
+    } else {
+        if (!_draw) then {
+            [[west]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];   
+        } else {
+            [[west,east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];   
+        };
+    };
+};
+
 playMusic "EventTrack01_F_Curator";
 [player, true] call TFAR_fnc_forceSpectator;
 [player, player] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
@@ -178,29 +216,5 @@ for "_i" from 1 to 3 do {
     };
 };
 
-sleep 20;
+sleep 16;
 _display closeDisplay 1;
-
-if (_eastWins && !_draw) exitWith {
-
-    if (playerSide == east) then {
-        "end1" call BIS_fnc_endMission;
-    } else {
-        "LOSER" call BIS_fnc_endMission;
-    };
-
-};
-
-if (!_eastWins && !_draw) exitWith {
-
-    if (playerSide == west) then {
-        "end1" call BIS_fnc_endMission;
-    } else {
-        "LOSER" call BIS_fnc_endMission;
-    };
-
-};
-
-if (_draw) then {
-    "end1" call BIS_fnc_endMission;
-};
