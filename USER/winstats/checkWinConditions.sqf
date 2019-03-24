@@ -13,7 +13,7 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
     private _fuelStations = missionNamespace getVariable ["FF_allFuelStations", []];
     private _fuelStationsAreEmpty = true;
     private _allFuelTrucksDestroyedOrEmpty = false;
-    private _allTrucksDestroyed = count (_allFuelTrucks select { (!(canMove _x)) }  == count _allFuelTrucks;
+    private _allTrucksDestroyed = count (_allFuelTrucks select { (!(canMove _x)) })  == count _allFuelTrucks;
 
     {
         if (_x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) exitWith {
