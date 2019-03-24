@@ -4,6 +4,7 @@ playMusic "EventTrack01_F_Curator";
 
 
 
+
 private _screenWidth = safeZoneW;
 private _screenHeight = safeZoneH;
 
@@ -13,26 +14,7 @@ private _rowHeight = _screenHeight/40;
 disableSerialization;
 
 
-private _display = findDisplay 46 createDisplay "RscDisplayEmpty";
 
-_display displayAddEventHandler ["KeyDown", "if (((_this select 1) == 1) && (!isServer)) then {true} else {false};"];
-
-private _background = _display ctrlCreate ["RscText", -1];
-_background ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _screenHeight];
-_background ctrlSetBackgroundColor [0,0,0,0.9];
-_background ctrlCommit 0;
-
-private _backgroundHeader = _display ctrlCreate ["RscText", -1];
-_backgroundHeader ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _rowHeight*4];
-_backgroundHeader ctrlSetBackgroundColor [0,0,0,1];
-_backgroundHeader ctrlCommit 0;
-
-private _bgHeadline = _display ctrlCreate ["RscStructuredText", -1];
-_bgHeadline ctrlsetFont "RobotoCondensedBold";
-_bgHeadline ctrlSetBackgroundColor [0,0,0,0];
-_bgHeadline ctrlSetStructuredText parseText ("<t size='3' align='center' color='#333333'>Auswertung</t>");
-_bgHeadline ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _rowHeight*3];
-_bgHeadline ctrlCommit 0;
 
 
 // private _iconKilled = "\A3\ui_f\data\igui\cfg\mptable\killed_ca.paa";
@@ -57,6 +39,8 @@ private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_get
 private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
 private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
 
+
+
 /*
 systemChat _resultInf_west;
 systemChat _resultSoft_west;
@@ -71,6 +55,37 @@ private _resultTotal_east= str _resultTotalNumber_east;
 
 private _results_west = ["", _resultInf_west, _resultSoft_west, _resultFuel_west, _resultTotal_west];
 private _results_east = ["", _resultInf_east, _resultSoft_east, _resultFuel_east, _resultTotal_east];
+
+private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
+private _draw = _resultTotalNumber_west == _resultTotalNumber_east;
+
+private _display = findDisplay 46 createDisplay "RscDisplayEmpty";
+
+_display displayAddEventHandler ["KeyDown", "if (((_this select 1) == 1) && (!isServer)) then {true} else {false};"];
+
+
+private _resultText = if (!_draw && _eastWins) then { "Ital. Mafia gewinnt" } else { "russ. Mafia gewinnt"  };
+if (_draw) then { _resultText = "Unentschieden!" };
+
+private _background = _display ctrlCreate ["RscText", -1];
+_background ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _screenHeight];
+_background ctrlSetBackgroundColor [0,0,0,0.9];
+_background ctrlCommit 0;
+
+private _backgroundHeader = _display ctrlCreate ["RscText", -1];
+_backgroundHeader ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _rowHeight*4];
+_backgroundHeader ctrlSetBackgroundColor [0,0,0,1];
+_backgroundHeader ctrlCommit 0;
+
+private _bgHeadline = _display ctrlCreate ["RscStructuredText", -1];
+_bgHeadline ctrlsetFont "RobotoCondensedBold";
+_bgHeadline ctrlSetBackgroundColor [0,0,0,0];
+_bgHeadline ctrlSetStructuredText parseText ("<t size='3' align='center' color='#333333'>" + _resultText + "</t>");
+_bgHeadline ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _rowHeight*3];
+_bgHeadline ctrlCommit 0;
+
+
+
 
 for "_i" from 1 to 3 do {
 
@@ -165,9 +180,6 @@ for "_i" from 1 to 3 do {
 
 sleep 20;
 _display closeDisplay 1;
-
-private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
-private _draw = _resultTotalNumber_west == _resultTotalNumber_east;
 
 if (_eastWins && !_draw) exitWith {
 

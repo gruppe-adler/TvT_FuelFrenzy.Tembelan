@@ -7,6 +7,8 @@ private ["_newPoints","_categoriesVarName"];
 
 if (_side == sideUnknown) exitWith {};
 
+diag_log format ["add points %1 - %2", _side, _points];
+
 switch (_side) do {
     case (WEST): {
         _newPoints = (missionNamespace getVariable ["grad_common_points_west",0]) + _points;
