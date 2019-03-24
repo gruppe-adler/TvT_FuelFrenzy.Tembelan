@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={1801.5759,37.41,4880.7983};
-		dir[]={0.5419175,-0.82702124,0.14958471};
-		up[]={0.79720789,0.56216997,0.22005117};
-		aside[]={0.26607901,2.5023473e-007,-0.9639582};
+		pos[]={8239.0742,74.305,5683.3325};
+		dir[]={-0.59351963,-0.6170243,0.51674289};
+		up[]={-0.46536151,0.7869423,0.40516341};
+		aside[]={0.65664315,1.1874363e-008,0.75420481};
 	};
 };
 binarizationWanted=0;
@@ -20063,16 +20063,40 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8161.9595,-1.8604226,5708.8662};
-				angles[]={0,0.80285168,0};
+				angles[]={0,0.80285144,0};
 			};
 			side="Empty";
 			flags=1;
 			class Attributes
 			{
+				disableSimulation=1;
 			};
 			id=934;
 			type="Land_PierConcrete_01_16m_F";
 			atlOffset=1.7180362;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item162
 		{
@@ -20080,16 +20104,40 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8173.4224,-1.8573184,5719.8926};
-				angles[]={0,0.80285168,0};
+				angles[]={0,0.80285144,0};
 			};
 			side="Empty";
 			flags=1;
 			class Attributes
 			{
+				disableSimulation=1;
 			};
 			id=935;
 			type="Land_PierConcrete_01_16m_F";
 			atlOffset=3.4496109;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item163
 		{
@@ -20097,16 +20145,40 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8184.96,-1.8604829,5731.0327};
-				angles[]={0,0.80285168,0};
+				angles[]={0,0.80285144,0};
 			};
 			side="Empty";
 			flags=1;
 			class Attributes
 			{
+				disableSimulation=1;
 			};
 			id=938;
 			type="Land_PierConcrete_01_16m_F";
 			atlOffset=3.1623156;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item164
 		{
@@ -20114,16 +20186,40 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8196.4229,-1.8573787,5742.0591};
-				angles[]={0,0.80285168,0};
+				angles[]={0,0.80285144,0};
 			};
 			side="Empty";
 			flags=1;
 			class Attributes
 			{
+				disableSimulation=1;
 			};
 			id=939;
 			type="Land_PierConcrete_01_16m_F";
 			atlOffset=2.1515622;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item165
 		{

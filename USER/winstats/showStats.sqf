@@ -1,7 +1,6 @@
 playMusic "EventTrack01_F_Curator";
-
-
-
+[player, true] call TFAR_fnc_forceSpectator;
+[player, player] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
 
 private _screenWidth = safeZoneW;
 private _screenHeight = safeZoneH;
@@ -10,8 +9,6 @@ private _columnWidth = _screenWidth/26;
 private _rowHeight = _screenHeight/40;
 
 disableSerialization;
-
-
 
 
 private _display = findDisplay 46 createDisplay "RscDisplayEmpty";
@@ -177,7 +174,7 @@ if (_eastWins && !_draw) exitWith {
 
 };
 
-if (_westWins && !_draw) exitWith {
+if (!_eastWins && !_draw) exitWith {
 
     if (playerSide == west) then {
         "LOSER" call BIS_fnc_endMission;
