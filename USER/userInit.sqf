@@ -3,7 +3,7 @@
 */
 
 [] call refuel_fnc_addRefuelCargoAction;
-grad_refuel_rate = 100;
+grad_refuel_rate = 10;
 
 
 private _soundPath = [(str missionConfigFile), 0, -15] call BIS_fnc_trimString;

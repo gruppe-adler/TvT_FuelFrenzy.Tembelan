@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={2054.7175,42.915207,4876.7061};
-		dir[]={-0.59700489,-0.69313657,0.4039281};
-		up[]={-0.57408452,0.72080159,0.38842022};
-		aside[]={0.56037992,-5.1804818e-009,0.8282395};
+		pos[]={1702.0554,130.52649,5396.3579};
+		dir[]={-0.20539829,-0.72673953,0.65549093};
+		up[]={-0.21730575,0.68691099,0.6934908};
+		aside[]={0.9542504,-1.1315569e-007,0.2990151};
 	};
 };
 binarizationWanted=0;
@@ -11107,28 +11107,31 @@ class Mission
 		class Item71
 		{
 			dataType="Marker";
-			position[]={3727.4109,3.9200001,832.88};
+			position[]={3948.397,24.893602,1146.0563};
 			name="mrk_safeZone_west";
 			markerType="ELLIPSE";
 			type="ellipse";
 			colorName="ColorCIV";
 			fillName="Horizontal";
-			a=500;
+			a=900;
 			b=500;
+			angle=139.99998;
 			id=688;
 		};
 		class Item72
 		{
 			dataType="Marker";
-			position[]={1799.9561,12.41,4807.084};
+			position[]={1674.3168,0,5112.8975};
 			name="mrk_safeZone_east";
 			markerType="ELLIPSE";
 			type="ellipse";
 			colorName="ColorCIV";
 			fillName="Horizontal";
-			a=500;
-			b=500;
+			a=800;
+			b=300;
+			angle=69.999992;
 			id=689;
+			atlOffset=3.3296628;
 		};
 		class Item73
 		{
