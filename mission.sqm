@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=122;
+		nextID=127;
 	};
 	class Camera
 	{
-		pos[]={8239.0742,74.305,5683.3325};
-		dir[]={-0.59351963,-0.6170243,0.51674289};
-		up[]={-0.46536151,0.7869423,0.40516341};
-		aside[]={0.65664315,1.1874363e-008,0.75420481};
+		pos[]={3783.7622,29.726431,812.43311};
+		dir[]={0.25046945,-0.62777853,0.73699683};
+		up[]={0.20200573,0.77839047,0.59439373};
+		aside[]={0.94681835,-9.0803951e-008,-0.32177734};
 	};
 };
 binarizationWanted=0;
@@ -6959,7 +6959,7 @@ class Mission
 				};
 			};
 			id=205;
-			atlOffset=15.078125;
+			atlOffset=3.647037;
 		};
 		class Item3
 		{
@@ -8894,19 +8894,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3803.6401,5.8300772,836.77936};
+				position[]={3803.6399,5.8300772,836.77899};
 				angles[]={0,3.4033921,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
 				textures="standard";
 			};
 			id=653;
 			type="RHS_Ural_Fuel_VDV_01";
-			atlOffset=2.3841858e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -9344,7 +9343,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
 				textures="standard";
 			};
 			id=663;
@@ -9692,7 +9691,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
 				textures="standard";
 			};
 			id=664;
@@ -10040,7 +10039,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf"";}";
+				init="call{[this, west] execVM ""USER\winstats\addVehicleKilled.sqf""; if (isServer) then { this animateSource ['light_hide',1,true]; };}";
 				textures="standard";
 			};
 			id=665;
@@ -29158,7 +29157,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3761.1021,6.0787153,826.91309};
-				angles[]={-0,0.42805943,0};
+				angles[]={0,0.42805943,0};
 			};
 			side="Empty";
 			flags=4;
@@ -29430,7 +29429,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3770.512,6.0787153,823.86493};
-				angles[]={-0,0.42805943,0};
+				angles[]={0,0.42805943,0};
 			};
 			side="Empty";
 			flags=4;
@@ -29566,7 +29565,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3789.4294,5.1655793,817.15924};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -29721,7 +29720,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3791.9543,5.1655793,816.48431};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -29876,7 +29875,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3795.4741,5.1655793,815.47424};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30031,7 +30030,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3799.5334,5.1655793,814.07825};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30186,7 +30185,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3803.1335,5.1655793,813.25928};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30341,7 +30340,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3807.8772,5.1655793,811.67487};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30496,7 +30495,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3811.9392,5.1655793,810.17664};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30651,7 +30650,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3816.824,5.1655793,807.88721};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30806,7 +30805,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3822.3496,5.1655793,805.68042};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -30961,7 +30960,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3784.4739,5.1655793,812.86194};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -31116,7 +31115,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={3787.543,5.1655793,811.87952};
-				angles[]={-0,0.33410838,0};
+				angles[]={0,0.33410838,0};
 			};
 			side="Empty";
 			flags=4;
@@ -31311,7 +31310,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={1816.5005,13.77077,4882.7061};
-				angles[]={-0,0.38397244,0};
+				angles[]={0,0.38397244,0};
 			};
 			side="Empty";
 			flags=4;

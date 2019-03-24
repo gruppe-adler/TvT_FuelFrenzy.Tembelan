@@ -182,9 +182,9 @@ if (_eastWins && !_draw) exitWith {
 if (!_eastWins && !_draw) exitWith {
 
     if (playerSide == west) then {
-        "LOSER" call BIS_fnc_endMission;
-    } else {
         "end1" call BIS_fnc_endMission;
+    } else {
+        "LOSER" call BIS_fnc_endMission;
     };
 
 };

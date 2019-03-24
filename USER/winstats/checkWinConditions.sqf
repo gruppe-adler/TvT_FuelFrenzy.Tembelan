@@ -15,7 +15,7 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
     private _allFuelTrucksDestroyedOrEmpty = true;
 
     {
-        if (_x getVariable ["ace_refuel_currentFuelCargo",0] > 1) exitWith {
+        if (_x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) exitWith {
         // if ([_x] call ace_refuel_fnc_getFuel > 1) exitWith {
             _fuelStationsAreEmpty = false;
         };
@@ -26,7 +26,7 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
         diag_log "all fuel stations are empty";
 
         {
-            if (canMove _x && [_x] call ace_refuel_fnc_getFuel > 1) exitWith {
+            if (canMove _x && _x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) exitWith {
                 _allFuelTrucksDestroyedOrEmpty = false;
             };
 
