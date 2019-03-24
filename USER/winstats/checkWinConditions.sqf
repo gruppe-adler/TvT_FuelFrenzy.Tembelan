@@ -12,7 +12,7 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
 
     private _fuelStations = missionNamespace getVariable ["FF_allFuelStations", []];
     private _fuelStationsAreEmpty = true;
-    private _allFuelTrucksDestroyedOrEmpty = true;
+    private _allFuelTrucksDestroyedOrEmpty = false;
 
     {
         if (_x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) exitWith {
@@ -25,18 +25,14 @@ private _allFuelTrucks = (_fuelTrucksWest + _fuelTrucksEast);
         systemChat "all fuel stations are empty";
         diag_log "all fuel stations are empty";
 
-        {
-            if (canMove _x && _x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) exitWith {
-                _allFuelTrucksDestroyedOrEmpty = false;
-            };
-
-            if (_allFuelTrucksDestroyedOrEmpty) then {
-                ["USER\winstats\showStats.sqf"] remoteExec ["execVM", 0, true];
-                systemChat "all trucks destroyed or empty";
-                diag_log "all trucks destroyed or empty";
-                [_handle] call CBA_fnc_removePerFrameHandler;
-            };
-        } forEach _allFuelTrucks;
+        private _trucksStillRunning = count (_allFuelTrucks select { (canMove _x) && (_x getVariable ["ace_refuel_currentFuelCargo", 0] > 1) }) > 0;
+        
+        if (!_trucksStillRunning) then {
+            ["USER\winstats\showStats.sqf"] remoteExec ["execVM", 0, true];
+            systemChat "all trucks destroyed or empty";
+            diag_log "all trucks destroyed or empty";
+            [_handle] call CBA_fnc_removePerFrameHandler;
+        };
     };
     
 }, 1, [_allFuelTrucks]] call CBA_fnc_addPerFramehandler;

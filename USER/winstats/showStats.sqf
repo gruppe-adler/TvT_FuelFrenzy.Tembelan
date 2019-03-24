@@ -180,7 +180,7 @@ if (hasInterface) then {
                     private _subline = _display ctrlCreate ["RscStructuredText", -1];
                     _subline ctrlsetFont "RobotoCondensedBold";
                     _subline ctrlSetBackgroundColor [0,0,0,0];
-                    _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_east select _j) + "</t>");
+                    _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_west select _j) + "</t>");
                     _subline ctrlSetPosition [
                         _columnWidth * _multiplicator + safezoneX  + _columnWidth,
                         (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
@@ -195,7 +195,7 @@ if (hasInterface) then {
                     private _subline = _display ctrlCreate ["RscStructuredText", -1];
                     _subline ctrlsetFont "RobotoCondensedBold";
                     _subline ctrlSetBackgroundColor [0,0,0,0];
-                    _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_west select _j) + "</t>");
+                    _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_east select _j) + "</t>");
                     _subline ctrlSetPosition [
                         _columnWidth * _multiplicator + safezoneX  + _columnWidth,
                         (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
