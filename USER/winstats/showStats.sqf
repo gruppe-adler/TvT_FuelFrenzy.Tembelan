@@ -1,3 +1,8 @@
+playMusic "EventTrack01_F_Curator";
+
+
+
+
 private _screenWidth = safeZoneW;
 private _screenHeight = safeZoneH;
 
@@ -5,6 +10,9 @@ private _columnWidth = _screenWidth/26;
 private _rowHeight = _screenHeight/40;
 
 disableSerialization;
+
+
+
 
 private _display = findDisplay 46 createDisplay "RscDisplayEmpty";
 
@@ -54,8 +62,11 @@ systemChat _resultSoft_west;
 systemChat _resultFuel_west;
 */
 
-private _resultTotal_west = str ((parseNumber _resultInf_west) + (parseNumber _resultSoft_west) + (parseNumber _resultFuel_west));
-private _resultTotal_east= str ((parseNumber _resultInf_east) + (parseNumber _resultSoft_east) + (parseNumber _resultFuel_east));
+private _resultTotalNumber_west = ((parseNumber _resultInf_west) + (parseNumber _resultSoft_west) + (parseNumber _resultFuel_west));
+private _resultTotalNumber_east = ((parseNumber _resultInf_east) + (parseNumber _resultSoft_east) + (parseNumber _resultFuel_east));
+
+private _resultTotal_west = str _resultTotalNumber_west;
+private _resultTotal_east= str _resultTotalNumber_east;
 
 private _results_west = ["", _resultInf_west, _resultSoft_west, _resultFuel_west, _resultTotal_west];
 private _results_east = ["", _resultInf_east, _resultSoft_east, _resultFuel_east, _resultTotal_east];
@@ -149,4 +160,33 @@ for "_i" from 1 to 3 do {
             _divider ctrlSetBackgroundColor [1,1,1,0.03];
             _divider ctrlCommit 0;
     };
+};
+
+sleep 30;
+
+private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
+private _draw = _resultTotalNumber_west == _resultTotalNumber_east;
+
+if (_eastWins && !_draw) exitWith {
+
+    if (playerSide == east) then {
+        "end1" call BIS_fnc_endMission;
+    } else {
+        "LOSER" call BIS_fnc_endMission;
+    };
+
+};
+
+if (_westWins && !_draw) exitWith {
+
+    if (playerSide == west) then {
+        "LOSER" call BIS_fnc_endMission;
+    } else {
+        "end1" call BIS_fnc_endMission;
+    };
+
+};
+
+if (_draw) then {
+    "end1" call BIS_fnc_endMission;
 };
