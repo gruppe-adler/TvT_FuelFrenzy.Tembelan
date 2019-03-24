@@ -3,10 +3,10 @@ params [
 ];
 
 private _fuelPoints = [_side] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf");
-private _infPointsPlayer = [_side, "PLAYERKILLED"] call grad_points_fnc_getPointsVar;
-private _infPointsAI = [_side, "AIKILLED"] call grad_points_fnc_getPointsVar;
+private _infPointsPlayer = [_side, "Players killed"] call grad_points_fnc_getPointsCategory;
+private _infPointsAI = [_side, "AI killed"] call grad_points_fnc_getPointsCategory;
 private _infPoints = _infPointsAI + _infPointsPlayer;
-private _softPoints = [_side, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar;
+private _softPoints = [_side, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory;
 
 private _result = _fuelPoints + _infPoints + _softPoints;
 // systemChat str _pointsCategorized;

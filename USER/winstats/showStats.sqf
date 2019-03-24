@@ -1,12 +1,12 @@
 
 if (isServer) then {
     [] spawn {
-        private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([west, "AIKILLED"] call grad_points_fnc_getPointsVar));
-        private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([east, "AIKILLED"] call grad_points_fnc_getPointsVar));
+        private _resultInf_west = str (([west, "Players killed"] call grad_points_fnc_getPointsCategory) + ([west, "AI killed"] call grad_points_fnc_getPointsCategory));
+        private _resultInf_east = str (([east, "Players killed"] call grad_points_fnc_getPointsCategory) + ([east, "AI killed"] call grad_points_fnc_getPointsCategory));
         // private _resultArmored = ["", "1", "2", "3", "4"];
 
-        private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
-        private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+        private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
+        private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
         // private _resultArmored = ["", "1", "2", "3", "4"];
         private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
         private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
@@ -27,12 +27,12 @@ if (isServer) then {
         [] call GRAD_replay_fnc_stopRecord;
 
         if (_eastWins) then {
-            [[east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];    
+            [[east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];
         } else {
             if (!_draw) then {
-                [[west]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];   
+                [[west]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];
             } else {
-                [[west,east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];   
+                [[west,east]] remoteExec ["grad_endings_fnc_endMissionClient",0,false];
             };
         };
     };
@@ -71,12 +71,12 @@ if (hasInterface) then {
     private _picturePath = ["", _iconInf, _iconSoft, _iconFuel, _iconTotal];
     private _picturePathDescription = ["", "Infanterie", "Autos", "Treibstoff", "Insgesamt"];
 
-    private _resultInf_west = str (([west, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([west, "AIKILLED"] call grad_points_fnc_getPointsVar));
-    private _resultInf_east = str (([east, "PLAYERKILLED"] call grad_points_fnc_getPointsVar) + ([east, "AIKILLED"] call grad_points_fnc_getPointsVar));
+    private _resultInf_west = str (([west, "Players killed"] call grad_points_fnc_getPointsCategory) + ([west, "AI killed"] call grad_points_fnc_getPointsCategory));
+    private _resultInf_east = str (([east, "Players killed"] call grad_points_fnc_getPointsCategory) + ([east, "AI killed"] call grad_points_fnc_getPointsCategory));
     // private _resultArmored = ["", "1", "2", "3", "4"];
 
-    private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
-    private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsVar);
+    private _resultSoft_west = str ([west, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
+    private _resultSoft_east = str ([east, "VEHICLEKILLED"] call grad_points_fnc_getPointsCategory);
     // private _resultArmored = ["", "1", "2", "3", "4"];
     private _resultFuel_west = format ["%1", [west] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
     private _resultFuel_east = format ["%1", [east] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
@@ -149,24 +149,24 @@ if (hasInterface) then {
         _headline ctrlSetTextColor [1,1,1,1];
         _headline ctrlSetStructuredText parseText ("<t size='2' align='center' color='#666666'>" + (_columns select (_i-1)) + "</t>");
         _headline ctrlSetPosition [
-            _columnWidth * _multiplicator + safezoneX + _columnWidth, 
-            _rowHeight * 4 + safezoneY + _rowHeight * 2, 
+            _columnWidth * _multiplicator + safezoneX + _columnWidth,
+            _rowHeight * 4 + safezoneY + _rowHeight * 2,
             _columnWidth * 4,
-            _rowHeight * 2.5 
+            _rowHeight * 2.5
         ];
         _headline ctrlCommit 0;
 
 
-        for "_j" from 1 to 4 do {   
+        for "_j" from 1 to 4 do {
 
                 private _textFadeResult = if (_j == 4) then { 0 } else { 0.5 };
 
                 if (_i == 1) then {
                     private _picture = _display ctrlCreate ["RscPictureKeepAspect", -1];
                     _picture ctrlSetPosition [
-                        _columnWidth * _multiplicator + safezoneX  + _columnWidth + _columnWidth/2, 
+                        _columnWidth * _multiplicator + safezoneX  + _columnWidth + _columnWidth/2,
                         (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
-                        _columnWidth * 2, 
+                        _columnWidth * 2,
                         _rowHeight * 2
                     ];
                     _picture ctrlSetBackgroundColor [0,0,0,0];
@@ -182,7 +182,7 @@ if (hasInterface) then {
                     _subline ctrlSetBackgroundColor [0,0,0,0];
                     _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_east select _j) + "</t>");
                     _subline ctrlSetPosition [
-                        _columnWidth * _multiplicator + safezoneX  + _columnWidth, 
+                        _columnWidth * _multiplicator + safezoneX  + _columnWidth,
                         (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
                         _columnWidth * 4,
                         _rowHeight * 2
@@ -197,7 +197,7 @@ if (hasInterface) then {
                     _subline ctrlSetBackgroundColor [0,0,0,0];
                     _subline ctrlSetStructuredText parseText ("<t size='2' align='center' shadow='0' color='#ffffff'>" + (_results_west select _j) + "</t>");
                     _subline ctrlSetPosition [
-                        _columnWidth * _multiplicator + safezoneX  + _columnWidth, 
+                        _columnWidth * _multiplicator + safezoneX  + _columnWidth,
                         (_j * (_rowHeight * 6) + safezoneY) + _rowHeight * 6,
                         _columnWidth * 4,
                         _rowHeight * 2
