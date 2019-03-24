@@ -15,7 +15,7 @@ class WEATHER_OVERCAST
     title = "Overcast Settings";
     values[] = {0, 0.4, 0.5, 1, -1};
     texts[] = {"SUNNY", "CLOUDY", "SLIGHT RAIN", "HEAVY RAIN", "RANDOM"};
-    default = -1;
+    default = 0;
 };
 
 class WEATHER_FOG
@@ -31,5 +31,13 @@ class WEATHER_WIND
     title = "Wind Settings";
     values[] = {0, 1, 2, 4, 8, 32, -1};
     texts[] = {"None", "1 m/s", "2 m/s", "4 m/s", "8 m/s", "maximum perversum", "random"};
+    default = 1;
+};
+
+class ENABLE_CIVS
+{
+    title = "Enable Civs";
+    values[] = {0, 1};
+    texts[] = {"OFF", "ON"};
     default = 1;
 };
