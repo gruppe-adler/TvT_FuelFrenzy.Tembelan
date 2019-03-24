@@ -23,14 +23,14 @@ private _eventhandlerIdentifier = format ["FF_safeZoneFiredEH_%1", _area];
 
                 player setVariable [_eventhandlerSet, true];
 
-                private _firedEH = player addEventHandler ["fired", {deleteVehicle (_this select 6);}];
+                private _firedEH = (vehicle player) addEventHandler ["fired", {deleteVehicle (_this select 6);}];
                 player setVariable [_eventhandlerIdentifier, _firedEH];
                 if (_side == playerSide) then {
                     hintSilent parseText "<t color='#009999'><t size='2'><t align='center'>Willkommen<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst deine Base.";
                 } else {
                     hintSilent parseText "<t color='#ff0000'><t size='2'><t align='center'>Warnung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du betrittst die feindliche Base. Hau ab.";
                 };
-                player allowDamage false;
+                
             };
     };
 
@@ -47,8 +47,6 @@ private _eventhandlerIdentifier = format ["FF_safeZoneFiredEH_%1", _area];
                 } else {
                     hintSilent parseText "<t color='#FF0000'><t size='2'><t align='center'>Achtung<br/><br/><t align='center'><t size='1'><t color='#ffffff'>Du verlässt die Base.";
                 };
-            
-            player allowDamage true;
         };
     };
     
