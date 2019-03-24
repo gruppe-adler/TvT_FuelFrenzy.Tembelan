@@ -38,10 +38,10 @@ missionNamespace setVariable ["FF_fuelingSoundEnd", _refuelingSoundPathEnd];
                 private _fuelCount  = format ["%1", [side player] call (compile preprocessFileLineNumbers "USER\getFuelPoints.sqf")];
                 private _totalPoints = format ["%1", [side player] call (compile preprocessFileLineNumbers "USER\getPoints.sqf")];
                 hintSilent parseText ("
-                        <t color='#009999'><t size='2'><t align='center'>" + _fuelCount + "<br/>
-                        <t align='center'><t size='1'><t color='#ffffff'>L Treibstoff<br/><br/>
-                        <t color='#009999'><t size='2'><t align='center'>" + _totalPoints + "<br/>
-                        <t align='center'><t size='1'><t color='#ffffff'>Siegpunkte<br/><br/>");
+                        <t color='#009999'><t size='2'><t align='left'>" + _fuelCount + "<br/>
+                        <t align='left'><t size='0.7'><t color='#ffffff'>L Treibstoff<br/><br/>
+                        <t color='#009999'><t size='2'><t align='left'>" + _totalPoints + "<br/>
+                        <t align='left'><t size='0.7'><t color='#ffffff'>Siegpunkte<br/>");
                
             },
             [],

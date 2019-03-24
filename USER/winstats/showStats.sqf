@@ -2,6 +2,8 @@ playMusic "EventTrack01_F_Curator";
 [player, true] call TFAR_fnc_forceSpectator;
 [player, player] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
 
+
+
 private _screenWidth = safeZoneW;
 private _screenHeight = safeZoneH;
 
@@ -12,6 +14,8 @@ disableSerialization;
 
 
 private _display = findDisplay 46 createDisplay "RscDisplayEmpty";
+
+_display displayAddEventHandler ["KeyDown", "if (((_this select 1) == 1) && (!isServer)) then {true} else {false};"];
 
 private _background = _display ctrlCreate ["RscText", -1];
 _background ctrlSetPosition [safezoneX, safeZoneY, _screenWidth, _screenHeight];
@@ -159,7 +163,9 @@ for "_i" from 1 to 3 do {
     };
 };
 
-sleep 30;
+sleep 20;
+
+closeDisplay _display;
 
 private _eastWins = _resultTotalNumber_east > _resultTotalNumber_west;
 private _draw = _resultTotalNumber_west == _resultTotalNumber_east;
